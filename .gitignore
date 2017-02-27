@@ -1,0 +1,6 @@
+*.pyc
+
+# web2py sepecific ignores
+databases/*
+errors/*
+sessions/*
