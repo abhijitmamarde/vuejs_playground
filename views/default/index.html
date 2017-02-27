@@ -18,8 +18,12 @@
 
 <div id="app">
 
-<!-- declaritive rendering -->
-<h1> <%message%> </h1>
+<!-- text interpolations -->
+<h1> <% message %> </h1>
+
+<!-- html interpolation -->
+<p v-html="message"></p>
+
 
 <!-- binding model to element -->
 <input type="text" name="name" v-model="message" class="dbl-height" />
@@ -31,7 +35,7 @@
 <p v-if="message == 'abhi'">Thanks for message!</p>
 
 <input type="text" name="name" v-model="todo_text" class="dbl-height" />
-<button v-on:click="add_todo">Add TODO</button>
+<button v-on:click="add_todo" v-bind:disabled="todo_text == ''">Add TODO</button>
 
 <ol>
   <li v-for="todo in todos">
@@ -80,6 +84,7 @@ app = new Vue({
     add_todo: function () {
       if(this.todo_text != "") {
         this.todos.push({text: this.todo_text});
+        this.todo_text = '';
       }
     }
   },
