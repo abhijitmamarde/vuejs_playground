@@ -68,6 +68,25 @@ def remove_event():
     except Exception as err:
         print "Error while removing event: %s" % err
 
+def update_event():
+    print "inside update event"
+
+    try:
+        print request.vars
+        eid = int(request.vars['id'])
+        name = request.vars['name']
+        date = request.vars['date']
+        description = request.vars['description']
+        print "updated event name:"
+        print name
+        events_tbl.update(dict(
+            name=name,
+            date=date,
+            description=description), eids=[eid])
+
+        return True
+    except Exception as err:
+        print "Error while updating event: %s" % err
 
 
 def index():

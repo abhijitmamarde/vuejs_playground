@@ -27,11 +27,6 @@
         </div>
         <div class="panel-body">
 
-<div class="panel-heading">
-  <h3>Add an Event</h3>
-</div>
-<div class="panel-body">
-
   <div class="form-group">
     <input class="form-control" placeholder="Event Name" v-model="event.name">
   </div>
@@ -44,14 +39,15 @@
     <input type="date" class="form-control" placeholder="Date" v-model="event.date">
   </div>
 
-  <button class="btn btn-primary" @click="addEvent">Submit</button>
+  <button class="btn btn-primary" @click="addEvent" v-if="isActionAdd">Add</button>
+  <button class="btn btn-primary" @click="updateEvent" v-else="isActionAdd">Update</button>
+  <button class="btn btn-primary" @click="cancelEvent">Cancel</button>
 
 </div>
 
         </div>
 
       </div>
-    </div>
 
     <!-- show the events -->
     <div class="col-sm-6">
@@ -71,6 +67,7 @@
     <p class="list-group-item-text" v-if="event.description"><% event.description %></p>
 
     <button class="btn btn-xs btn-danger" @click="deleteEvent(event)">Delete</button>
+    <button class="btn btn-xs btn-success" @click="editEvent(event)">Edit</button>
   </a>
 
       </div>
