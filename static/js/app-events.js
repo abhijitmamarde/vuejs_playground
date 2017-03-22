@@ -46,17 +46,14 @@ new Vue({
             }
         },
 
-        deleteEvent: function(event) {
-            if(confirm("Are you sure you want to delete this event?")) {
+        deleteEvent: function(index) {
+            if(confirm("Are you sure you want to delete event: " + this.events[index].name + "?")) {
 
-                this.$http.post('/vsd/default/remove_event', event).then(response => {
+                this.$http.post('/vsd/default/remove_event', this.events[index]).then(response => {
 
                     console.log("success:");
                     console.log(response.body);
-                    var index = this.events.indexOf(event);
-                    if(index != -1) {
-                        this.events.splice( index, 1 );
-                    }
+                    this.events.splice( index, 1 );
 
                 }, response => {
                     console.log("error while remove");
